@@ -1,0 +1,70 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WifiHotspot"
+    xmlns:common="using:WifiHotspot.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    x:Name="pageRoot"
+    x:Class="WifiHotspot.ana1"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Mode=Self}}"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
+        <x:String x:Key="AppName">My Application</x:String>
+    </Page.Resources>
+
+    <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<Grid.ChildrenTransitions>
+			<TransitionCollection>
+				<EntranceThemeTransition/>
+			</TransitionCollection>
+		</Grid.ChildrenTransitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="140"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<!-- Back button and page title -->
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="120"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+				Style="{StaticResource NavigationBackButtonNormalStyle}"
+				VerticalAlignment="Top"
+				AutomationProperties.Name="Back"
+				AutomationProperties.AutomationId="BackButton"
+				AutomationProperties.ItemType="Navigation Button"/>
+			<TextBlock x:Name="pageTitle" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+				IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40">
+				<Run Foreground="#FFADFFB8" Text="Wi-Fi Hotspot | "/>
+				<Run Text="Ağ Kurulum Asistanı"/>
+			</TextBlock>
+		</Grid>
+		<TextBlock x:Name="pageTitle_Copy" Style="{StaticResource HeaderTextBlockStyle}" 
+			IsHitTestVisible="false" TextWrapping="NoWrap" Margin="120,41,94,547" Grid.Row="1" Text="Yeni Ağ Bilgileri" FontSize="36"/>
+		<TextBox HorizontalAlignment="Left" Margin="181,163,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="269" PlaceholderText="Ağ Adı (SSID)"/>
+		<PasswordBox HorizontalAlignment="Left" Margin="181,213,0,0" Grid.Row="1" VerticalAlignment="Top" Width="269" PlaceholderText="Ağ Şifresi"/>
+		<Button Content="Başlat" HorizontalAlignment="Left" Margin="353,254,0,0" Grid.Row="1" VerticalAlignment="Top" Width="101" Background="#FF3BA41F"/>
+		<Rectangle Fill="#FFA80000" HorizontalAlignment="Left" Height="170" Margin="159,137,0,0" Grid.Row="1" VerticalAlignment="Top" Width="4"/>
+		<TextBlock HorizontalAlignment="Left" Margin="200,337,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Durum :" VerticalAlignment="Top" FontSize="16" Foreground="#FFC9C9C9"/>
+		<TextBlock x:ConnectionId='1' HorizontalAlignment="Left" Margin="262,337,0,0" Grid.Row="1" TextWrapping="Wrap" Text="-" VerticalAlignment="Top" FontSize="16" Foreground="White"                                              />
+		<Button x:ConnectionId='2' x:Name="button" Content="Kontrol Et" HorizontalAlignment="Left" Margin="353,361,0,0" Grid.Row="1" VerticalAlignment="Top"                     >
+			<Interactivity:Interaction.Behaviors>
+				<Core:EventTriggerBehavior EventName="Click">
+					<Core:InvokeCommandAction Command="{Binding Command, ElementName=button, Mode=TwoWay}" CommandParameter="netsh wlan show hostednetwork"/>
+				</Core:EventTriggerBehavior>
+			</Interactivity:Interaction.Behaviors>
+		</Button>
+	</Grid>
+</Page>
+
