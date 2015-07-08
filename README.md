@@ -5,7 +5,7 @@ Windows sistemlerde tümleşik bulunan "netsh wlan" komutlarını ve tümleşik 
 Şimdilik sadece genel tasarımı aktarıldı. 
 TemporaryKey sertifikası kaldırıldı.
 # Not
-Windows Store 'de daha önceden benim tarafımdan ücretsiz bir şekilde yayınlanmış olup, tekrar yayınlanması dahilinde yasal işlem başlatma hakkı saklı tutulmaktadır.
+Windows Store 'de daha önceden benim tarafımdan ücretsiz bir şekilde yayınlanmış olup, yapımcı belirtilmeden tekrar yayınlanması dahilinde yasal işlem başlatma hakkı saklı tutulmaktadır.
 # Lisans / Telif
 The MIT License (MIT)
 
